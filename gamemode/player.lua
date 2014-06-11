@@ -313,7 +313,7 @@ function GM:PlayerLoadout( pl )
 	pl:Give( "sb_barrelsuicider" )
 	pl:SetRunSpeed(320)
 	pl:SetDuckSpeed(0.4)
-	pl:SetWalkSpeed(220)
+	pl:SetWalkSpeed(420)     --   change   run   speed   here
 	elseif (pl:Team() == TEAM_HUMANS ) then
 	pl:Give( "sb_barrelslayer" )
 	pl:GiveAmmo( 999, "pistol", true )

@@ -1,14 +1,13 @@
 round = {}
 
--- Config
-round.MinPlayers = 2
-barrelKillScore = 3 -- How many points a Barrel gets for killing a Human.
-humanKillScore = 1 -- How many points a Human gets for killing a Barrel.
+round.MinPlayers 	= 2 -- GetConVarNumber( "sb_minplayers" )
+barrelKillScore 	= 3 -- GetConVarNumber( "sb_bkillscore" )
+humanKillScore 		= 1 -- GetConVarNumber( "sb_hkillscore" )
 
 -- Timing (In seconds)
-round.Break	= 15	-- 15 second breaks
-round.Time	= 120	-- 2 minute rounds
-round.WarnTime = 10 -- The interval at which it warns the players that there is 10 seconds left.
+round.Break		= 15 -- GetConVarNumber( "sb_breaktime" )	
+round.Time		= 120 -- (GetConVarNumber( "sb_roundtime" ) * 60) 	-- get round time, multiply to minutes
+round.WarnTime 	= 10 -- GetConVarNumber( "sb_warntime" )
 
 -- Read Variables (IGNORE THESE)
 round.TimeLeft = -1

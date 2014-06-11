@@ -17,6 +17,19 @@ include( 'cl_init.lua' )
 include( 'shared.lua' )
 include( 'sh_roundtimer.lua' )
 
+-- /!\ Server ConVars /!\ --
+-- Rounds
+-- GM.RoundLimit = CreateConVar("roundlimit", 0, bit.bor(FCVAR_NOTIFY), "Number of rounds we should play before map change" )
+
+GM.minPlayers 	= CreateConVar( "sb_minplayers", 2, bit.bor(FCVAR_NOTIFY), "Nuber of players needed for the round to start" )
+GM.breakTime 	= CreateConVar( "sb_breaktime", 15, bit.bor(FCVAR_NONE), "Wait time after rounds" )
+GM.roundTime 	= CreateConVar( "sb_roundtime", 2, bit.bor(FCVAR_NONE), "Round time in minutes" )
+GM.warnTime 	= CreateConVar( "sb_warntime", 10, bit.bor(FCVAR_NONE), "Warn the player when this many seconds remain" )
+-- Killing and Score
+GM.bKillScore 	= CreateConVar( "sb_bkillscore", 3, bit.bor(FCVAR_NONE), "How many points barrels get per kill" )
+GM.hKillScore 	= CreateConVar( "sb_hkillscore", 1, bit.bor(FCVAR_NONE), "How many points humans get per kill")
+
+
 /*---------------------------------------------------------
    Name: gamemode:DoPlayerDeath( )
    Desc: Carries out actions when the player dies 		 

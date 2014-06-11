@@ -26,9 +26,9 @@ include( 'gravitygun.lua' )
 include( 'player_shd.lua' )
 
 GM.Name 	= "Suicide Barrels"
-GM.Author 	= "Heyo fixed by Zephruz"
-GM.Email 	= "heyo2490@yahoo.com"
-GM.Website 	= ""
+GM.Author 	= "RalphORama"
+GM.Email 	= ""
+GM.Website 	= "http://www.corerp.co/"
 GM.Help		= "Humans: Watch out for moving barrels!\nBarrels: Destroy all humans! Watch out though, they have guns!"
 
 

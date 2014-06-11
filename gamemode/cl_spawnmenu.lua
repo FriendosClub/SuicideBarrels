@@ -9,7 +9,7 @@
    Return false to dissallow it.
 ---------------------------------------------------------*/
 function GM:SpawnMenuOpen()
-	return true	
+	return false
 end
 
 /*---------------------------------------------------------
@@ -17,5 +17,5 @@ end
    Return false to dissallow it.
 ---------------------------------------------------------*/
 function GM:ContextMenuOpen()
-	return true	
+	return false	
 end
