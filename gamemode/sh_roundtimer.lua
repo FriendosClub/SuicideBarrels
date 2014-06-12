@@ -1,6 +1,6 @@
 round = {}
 
-round.MinPlayers 	= 2 -- GetConVarNumber( "sb_minplayers" )
+round.MinPlayers 	= GetGlobalInt("sb_minplayers", 2)
 barrelKillScore 	= 3 -- GetConVarNumber( "sb_bkillscore" )
 humanKillScore 		= 1 -- GetConVarNumber( "sb_hkillscore" )
 
@@ -10,13 +10,13 @@ round.Time		= 120 -- (GetConVarNumber( "sb_roundtime" ) * 60) 	-- get round time
 round.WarnTime 	= 10 -- GetConVarNumber( "sb_warntime" )
 
 -- Read Variables (IGNORE THESE)
-round.TimeLeft = -1
-round.RoundCur = 0
-round.HumanWins = 0
-round.BarrelWins = 0
-round.Breaking = false
-round.Active = false
-round.EnblEnd = true
+round.TimeLeft 		= -1
+round.RoundCur 		= 0
+round.HumanWins 	= 0
+round.BarrelWins 	= 0
+round.Breaking 		= false
+round.Active 		= false
+round.EnblEnd 		= true
 
 if CLIENT then
 	surface.CreateFont( "RoundFont", {
