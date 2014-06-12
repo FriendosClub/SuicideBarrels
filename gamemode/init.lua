@@ -34,7 +34,10 @@ GM.hKillScore 	= CreateConVar( "sb_hkillscore", 1, bit.bor(FCVAR_NONE), "How man
 
 -- gotta make those convars global
 function GM:SyncGlobals()
-	SetGlobalInt("sb_minplayers", GetConVar("sb_minplayers"):GetInt())
+	SetGlobalInt( "sb_minplayers", GetConVar("sb_minplayers"):GetInt() )
+	SetGlobalInt( "sb_breaktime", GetConVar("sb_breaktime"):GetInt() )
+	SetGlobalInt( "sb_roundtime", GetConVar("sb_roundtime"):GetInt() )
+	SetGlobalInt( "sb_warntime", GetConVar("sb_warntime"):GetInt() )
 end
 
 

@@ -131,7 +131,7 @@ function GM:HUDDrawScoreBoard()
 	
 	local hostname = GetConVarString( "hostname" )
 	local gamemodeName = gmName .. " - Created by " .. upByName
-	local roundtime = util.SimpleTime(math.max(0, round.TimeLeft), "%02i:%02i")
+	local roundtime = util.SimpleTime(math.max(0, GetGlobalInt("sb_roundtime", 2)), "%02i:%02i")
 	local currentRound = round.RoundCur
 	
 	surface.SetTextColor( 255, 255, 255, 255 )

@@ -1,12 +1,12 @@
 round = {}
 
-round.MinPlayers 	= GetGlobalInt("sb_minplayers", 2)
+-- round.MinPlayers 	= GetGlobalInt("sb_minplayers", 2)
 barrelKillScore 	= 3 -- GetConVarNumber( "sb_bkillscore" )
 humanKillScore 		= 1 -- GetConVarNumber( "sb_hkillscore" )
 
 -- Timing (In seconds)
-round.Break		= 15 -- GetConVarNumber( "sb_breaktime" )	
-round.Time		= 120 -- (GetConVarNumber( "sb_roundtime" ) * 60) 	-- get round time, multiply to minutes
+-- round.Break		= GetGlobalInt("sb_breaktime", 15)
+round.Time		= GetGlobalInt("sb_roundtime", 2)
 round.WarnTime 	= 10 -- GetConVarNumber( "sb_warntime" )
 
 -- Read Variables (IGNORE THESE)
@@ -36,11 +36,11 @@ end
 function enoughPlayers()
 	local numPlayers = 0
 
-	if table.Count(player.GetAll()) >= round.MinPlayers then
+	if table.Count(player.GetAll()) >= GetGlobalInt("sb_minplayers", 2) then
 		if SERVER then		
 			for k, v in pairs(player.GetAll()) do
 				if IsValid(v) then
-					v:PrintMessage(HUD_PRINTCENTER, "Round started! You have " .. math.Round(round.Time/60) .. " minutes!")
+					v:PrintMessage(HUD_PRINTCENTER, "Round started! You have " .. GetGlobalInt("sb_roundtime", 2) .. " minutes!")
 					v:SetTeam(TEAM_HUMANS)
 					v:Spawn()
 					v:StripWeapon("sb_barrelsuicider")
@@ -52,12 +52,12 @@ function enoughPlayers()
 			randomply:SetTeam(TEAM_BARRELS)
 			randomply:Spawn()
 			randomply:StripWeapon("sb_barrelslayer")
-			randomply:PrintMessage(HUD_PRINTCENTER, "Round started! You are a Barrel! You have " .. math.Round(round.Time/60) .. " minutes to eliminate the humans!")
+			randomply:PrintMessage(HUD_PRINTCENTER, "Round started! You are a Barrel! You have " .. GetGlobalInt("sb_roundtime", 2) .. " minutes to eliminate the humans!")
 		end
-		round.TimeLeft = round.Time
+		round.TimeLeft = ( GetGlobalInt("sb_roundtime", 2) * 60 )
 		round.Active = true
 		round.RoundCur = round.RoundCur + 1
-	elseif table.Count(player.GetAll()) < round.MinPlayers then
+	elseif table.Count(player.GetAll()) < GetGlobalInt("sb_minplayers", 2) then
 		if SERVER then
 			for k, v in pairs(player.GetAll()) do
 				if IsValid(v) then
@@ -77,13 +77,13 @@ function round.End()
 	if SERVER then
 		if (team.NumPlayers (TEAM_HUMANS)) >= 1 then
 			for k, v in pairs(player.GetAll()) do
-			 v:PrintMessage(HUD_PRINTCENTER, "Humans Win! Next round in " .. round.Break .. " seconds!")
+			 v:PrintMessage(HUD_PRINTCENTER, "Humans Win! Next round in " .. GetGlobalInt("sb_breaktime", 15) .. " seconds!")
 			 v:KillSilent()
 			 v:SetTeam(TEAM_SPECTATOR)
 			end
 		elseif (team.NumPlayers (TEAM_HUMANS)) < 1 or nil then
 			for k, v in pairs(player.GetAll()) do
-			 v:PrintMessage(HUD_PRINTCENTER, "Barrels Win! Next round in " .. round.Break .. " seconds!")
+			 v:PrintMessage(HUD_PRINTCENTER, "Barrels Win! Next round in " .. GetGlobalInt("sb_breaktime", 15) .. " seconds!")
 			 v:KillSilent()
 			 v:SetTeam(TEAM_SPECTATOR)
 			end
@@ -96,7 +96,7 @@ function round.End()
 		round.BarrelWins = round.BarrelWins + 1
 	end
 	
-	round.TimeLeft = round.Break
+	round.TimeLeft = GetGlobalInt("sb_breaktime", 15)
 	round.Active = false
 end
 
@@ -136,7 +136,7 @@ if not seconds then seconds = 0 end
 end
 
 function WinTest()
-	if table.Count(player.GetAll()) >= round.MinPlayers then
+	if table.Count(player.GetAll()) >= GetGlobalInt("sb_minplayers", 2) then
 		if (team.NumPlayers (TEAM_HUMANS)) < 1 and round.Breaking == false and round.Active == true then
 			round.End()
 			round.EnblEnd = true
@@ -152,7 +152,7 @@ function round.IsActive()
 		return "Round Active"
 	elseif round.Breaking == true and round.Active == false then
 		return "Round Over"
-	elseif round.Active == false and table.Count(player.GetAll()) < round.MinPlayers then
+	elseif round.Active == false and table.Count(player.GetAll()) < GetGlobalInt("sb_minplayers", 2) then
 		return "Not Enough Players"
 	elseif round.EnblEnd == true then
 		return "Round Over"
