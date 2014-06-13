@@ -83,7 +83,7 @@ function GM:HUDDrawTargetID()
 	local text = "ERROR"
 	local font = "TargetID"
 	
-	if (trace.Entity:IsPlayer()) and ( trace.Entity:Team( )== TEAM_HUMANS )then
+	if (trace.Entity:IsPlayer()) and ( trace.Entity:Team() == TEAM_HUMANS )then
 		text = trace.Entity:Nick()
 	else
 		return
@@ -94,7 +94,7 @@ function GM:HUDDrawTargetID()
 	
 	local x, y = gui.MousePos()
 	
-	x = x - w / 2
+	x = 0
 	y = y + 30
 	
 	// The fonts internal drop shadow looks lousy with AA on

@@ -87,6 +87,12 @@ function round.End()
 			 v:KillSilent()
 			 v:SetTeam(TEAM_SPECTATOR)
 			end
+		elseif (team.NumPlayers (TEAM_BARRELS)) < 1 or nil then
+			for k, v in pairs(player.GetAll()) do
+			 v:PrintMessage(HUD_PRINTCENTER, "The Barrels Left! Next round in " .. GetGlobalInt("sb_breaktime", 15) .. " seconds!")
+			 v:KillSilent()
+			 v:SetTeam(TEAM_SPECTATOR)
+			end
 		end
 	end
 
@@ -137,7 +143,7 @@ end
 
 function WinTest()
 	if table.Count(player.GetAll()) >= GetGlobalInt("sb_minplayers", 2) then
-		if (team.NumPlayers (TEAM_HUMANS)) < 1 and round.Breaking == false and round.Active == true then
+		if ((team.NumPlayers (TEAM_HUMANS)) or (team.NumPlayers (TEAM_BARRELS)) ) < 1 and round.Breaking == false and round.Active == true then
 			round.End()
 			round.EnblEnd = true
 		else

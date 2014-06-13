@@ -4,8 +4,8 @@ TEAM_SPECTATOR = 3
 
 --DeriveGamemode( "fretta" )
 
-team.SetUp( TEAM_HUMANS, "Humans", Color(255, 200, 50, 255))
-team.SetUp( TEAM_BARRELS, "Barrel", Color(255, 0, 0,255))
+team.SetUp( TEAM_HUMANS, "Humans", Color(255, 212, 100, 255))
+team.SetUp( TEAM_BARRELS, "Barrel", Color(255, 95, 74,255))
 team.SetUp( TEAM_SPECTATOR, "Spectators", Color(240, 230, 140,255))
 
 /*---------------------------------------------------------

@@ -11,8 +11,8 @@ local function CreateDeathNotify()
 
 		g_DeathNotify = vgui.Create( "DNotify" )
 		
-		g_DeathNotify:SetPos( 0, 25 )
-		g_DeathNotify:SetSize( x - ( 50 ), y )
+		g_DeathNotify:SetPos( 10, 25 )
+		g_DeathNotify:SetSize( 75, 300 )
 		g_DeathNotify:SetAlignment( 9 )
 		g_DeathNotify:SetSkin( 2 )
 		g_DeathNotify:SetLife( 4 )
