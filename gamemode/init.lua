@@ -18,21 +18,38 @@ include( 'shared.lua' )
 include( 'sh_roundtimer.lua' )
 
 -- /!\ Server ConVars /!\ --
--- Rounds
--- GM.RoundLimit = CreateConVar("roundlimit", 0, bit.bor(FCVAR_NOTIFY), "Number of rounds we should play before map change" )
--- CreateConVar("ttt_traitor_pct", "0.25")
 
--- rounds
 CreateConVar( "sb_minplayers", "2" )
 CreateConVar( "sb_breaktime", "15" )
 CreateConVar( "sb_roundtime", "2")
 CreateConVar( "sb_warntime", "10" )
 
--- Killing and Score
-GM.bKillScore 	= CreateConVar( "sb_bkillscore", 3, bit.bor(FCVAR_NONE), "How many points barrels get per kill" )
-GM.hKillScore 	= CreateConVar( "sb_hkillscore", 1, bit.bor(FCVAR_NONE), "How many points humans get per kill")
+CreateConVar( "sb_bkillscore", "3" )
+CreateConVar( "sb_hkillscore", "1" )
 
--- gotta make those convars global
+-- Localise stuff we use often. It's like Lua go-faster stripes.
+local math 		= math
+local table 	= table
+local net	 	= net
+local player 	= player
+local timer	 	= timer
+local util	 	= util
+
+
+-- /!\ Functions /!\ --
+
+function GM:Initialize()
+	GAMEMODE.cvar_init = false
+	
+	math.randomseed(os.time())
+end
+
+function GM:InitCvars()
+	GAMEMODE:SyncGlobals()
+
+	self.cvar_init = true
+end
+
 function GM:SyncGlobals()
 	SetGlobalInt( "sb_minplayers", GetConVar("sb_minplayers"):GetInt() )
 	SetGlobalInt( "sb_breaktime", GetConVar("sb_breaktime"):GetInt() )
@@ -40,11 +57,6 @@ function GM:SyncGlobals()
 	SetGlobalInt( "sb_warntime", GetConVar("sb_warntime"):GetInt() )
 end
 
-
-/*---------------------------------------------------------
-   Name: gamemode:DoPlayerDeath( )
-   Desc: Carries out actions when the player dies 		 
----------------------------------------------------------*/
 function GM:DoPlayerDeath( ply, attacker, dmginfo )
 
 	if ( ply:Team() == TEAM_BARRELS or ply:Team() == TEAM_HUMANS ) then

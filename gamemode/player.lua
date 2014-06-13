@@ -219,6 +219,11 @@ function GM:PlayerDeathThink( pl )
 	
 end
 
+-- get rid of the annoying beeping because jesus fuck is that bad
+function GM:PlayerDeathSound() 
+	return true 
+end
+
 /*---------------------------------------------------------
 	Name: gamemode:PlayerUse( player, entity )
 	Desc: A player has attempted to use a specific entity

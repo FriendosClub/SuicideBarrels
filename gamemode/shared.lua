@@ -37,9 +37,9 @@ GM.Help		= "Humans: Watch out for moving barrels!\nBarrels: Destroy all humans! 
    Return true if this player should take damage from this attacker
 ---------------------------------------------------------*/
 function GM:PlayerShouldTakeDamage( victim, attacker )
-	if ( victim:Team( )== TEAM_BARRELS ) and ( attacker:Team( )== TEAM_BARRELS )and ( attacker != ply ) then
+	if ( victim:Team() == TEAM_BARRELS ) and ( attacker:Team() == TEAM_BARRELS ) and ( attacker != ply ) then
 	   	return false
-	elseif( victim:Team( )== TEAM_HUMANS ) and ( attacker:Team( )== TEAM_HUMANS )	and ( attacker != ply ) then
+	elseif( victim:Team() == TEAM_HUMANS ) and ( attacker:Team() == TEAM_HUMANS ) and ( attacker != ply ) then
 		return false
 	else
 		return true

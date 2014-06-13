@@ -139,20 +139,20 @@ function GM:PlayerDeath( victim, inflictor, attacker )
 	end
 	
 	if ( attacker:Team( )== TEAM_HUMANS ) and ( victim:Team( )== TEAM_BARRELS ) then
-	local ent = ents.Create( "env_explosion" )
-		ent:SetPos( victim:GetPos() )
-		ent:SetKeyValue( "iMagnitude", "100" )
-		ent:SetOwner( victim )
-		ent:Spawn()
-		ent:Fire( "Explode", 0, 0 )
-	end
+		local ent = ents.Create( "env_explosion" )
+			ent:SetPos( victim:GetPos() )
+			ent:SetKeyValue( "iMagnitude", "100" )
+			ent:SetOwner( victim )
+			ent:Spawn()
+			ent:Fire( "Explode", 0, 0 )
+		end
 	
 	if ( attacker:Team( )== TEAM_BARRELS ) and ( victim:Team( )== TEAM_HUMANS ) then
 		victim:SetTeam(TEAM_BARRELS)
 	end
 	
 	if (attacker == victim) and ( attacker:Team( )== TEAM_BARRELS ) then
-	return; 
+		return; 
 	end
 
 	if (attacker == victim) and ( attacker:Team( )== TEAM_HUMANS ) then
@@ -190,165 +190,6 @@ end
 function GM:PlayerBindPress( pl, bind, down )
 	return false	
 end
-
--- function teamSwitchMenu()
-	-- local ply = player.GetByID(1)
-
-	-- local tmSwitchMenu = vgui.Create("DFrame")
-	-- tmSwitchMenu:Dock(TOP)
-	-- tmSwitchMenu:DockMargin(100,100,100,100)
-	-- tmSwitchMenu:SetSize(ScrW()/2,ScrH()-200)
-	-- tmSwitchMenu:MakePopup()
-	-- tmSwitchMenu:SetTitle("")
-	-- tmSwitchMenu:ShowCloseButton(false)
-	-- tmSwitchMenu:SetDraggable(false)
-	-- tmSwitchMenu.Paint = function()
-		-- tmSwitchMenu.startTime = SysTime()
-	
-		-- surface.SetDrawColor(0, 0, 0, 120)
-		-- surface.DrawRect(0, 0, tmSwitchMenu:GetWide(), tmSwitchMenu:GetTall())
-		
-		-- /*surface.SetDrawColor(46, 48, 57, 255)
-		-- surface.DrawRect(1, 0, tmSwitchMenu:GetWide(), tmSwitchMenu:GetTall()/16)*/
-		
-		-- surface.SetDrawColor(150, 150, 150, 200)
-		-- surface.DrawOutlinedRect(0, 0, tmSwitchMenu:GetWide(), tmSwitchMenu:GetTall())
-		
-		-- Derma_DrawBackgroundBlur( tmSwitchMenu, tmSwitchMenu.startTime )
-	-- end
-	
-	-- local tmSwitchTeamLabel = vgui.Create("DLabel", tmSwitchMenu)
-	-- tmSwitchTeamLabel:Dock(TOP)
-	-- tmSwitchTeamLabel:DockMargin(tmSwitchMenu:GetWide()/1.8,0,30,0)
-	-- tmSwitchTeamLabel:SetText("SELECT TEAM")
-	-- tmSwitchTeamLabel:SetFont("ScoreboardHeadHuge")
-	-- tmSwitchTeamLabel:SetColor(Color(255,255,255,255))
-	-- tmSwitchTeamLabel:SizeToContents()
-	
-	-- local tmBarrelPanel = vgui.Create("DPanel", tmSwitchMenu)
-	-- tmBarrelPanel:Dock(LEFT)
-	-- tmBarrelPanel:DockMargin(200,50,100,100)
-	-- tmBarrelPanel:SetSize(300,tmSwitchMenu:GetTall()-100)
-	-- tmBarrelPanel.Paint = function()
-		-- surface.SetDrawColor(0, 0, 0, 120)
-		-- surface.DrawRect(0, 0, tmBarrelPanel:GetWide(), tmBarrelPanel:GetTall())
-		
-		-- /*surface.SetDrawColor(46, 48, 57, 255)
-		-- surface.DrawRect(1, 0, tmBarrelPanel:GetWide(), tmBarrelPanel:GetTall()/16)*/
-		
-		-- surface.SetDrawColor(150, 150, 150, 200)
-		-- surface.DrawOutlinedRect(0, 0, tmBarrelPanel:GetWide(), tmBarrelPanel:GetTall())
-	-- end
-	
-	-- local tmBarrelIcon = vgui.Create( "DModelPanel", tmBarrelPanel )
-	-- tmBarrelIcon:SetModel( "models/props_c17/oildrum001_explosive.mdl" )
-	-- tmBarrelIcon:Dock(TOP)
-	-- tmBarrelIcon:DockMargin(10,10,10,10)
-	-- tmBarrelIcon:SetSize(tmBarrelPanel:GetWide()-10,tmBarrelPanel:GetTall()-10)
-	-- tmBarrelIcon:SetCamPos( Vector( 50, 50, 30 ) )
-	-- tmBarrelIcon:SetLookAt( Vector( 0, 0, 0 ) )
-	
-	-- local tmBarrelTeamJoin = vgui.Create("DButton", tmBarrelPanel )
-	-- tmBarrelTeamJoin:Dock(BOTTOM)
-	-- tmBarrelTeamJoin:DockMargin(10,10,10,10)
-	-- tmBarrelTeamJoin:SetText("JOIN BARRELS")
-	-- tmBarrelTeamJoin:SetColor(Color(255,255,255,255))
-	-- tmBarrelTeamJoin:SetFont("ScoreboardSub")
-	-- tmBarrelTeamJoin:SetSize(tmBarrelPanel:GetWide()-10,100)
-	-- tmBarrelTeamJoin.Paint = function()
-		-- surface.SetDrawColor(180,0,0,255)
-		-- surface.DrawRect(0, 0, tmBarrelTeamJoin:GetWide(), tmBarrelTeamJoin:GetTall())
-		
-		-- /*surface.SetDrawColor(46, 48, 57, 255)
-		-- surface.DrawRect(1, 0, tmBarrelTeamJoin:GetWide(), tmBarrelTeamJoin:GetTall()/16)*/
-		
-		-- surface.SetDrawColor(150, 150, 150, 200)
-		-- surface.DrawOutlinedRect(0, 0, tmBarrelTeamJoin:GetWide(), tmBarrelTeamJoin:GetTall())
-	-- end
-	-- tmBarrelTeamJoin.DoClick = function()
-		-- if ( ply:Team( )== TEAM_HUMANS ) then
-			-- net.Start( "sendPlayerTeamSwitchBarrels" )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-			-- net.SendToServer()
-		-- else
-			-- chat.AddText("You're already on this team!")
-		-- end
-		-- tmSwitchMenu:SetVisible(false)
-	-- end
-	
-	-- local tmHumanPanel = vgui.Create("DPanel", tmSwitchMenu)
-	-- tmHumanPanel:Dock(RIGHT)
-	-- tmHumanPanel:DockMargin(100,50,200,100)
-	-- tmHumanPanel:SetSize(300,tmSwitchMenu:GetTall()-100)
-	-- tmHumanPanel.Paint = function()
-		-- surface.SetDrawColor(0, 0, 0, 120)
-		-- surface.DrawRect(0, 0, tmHumanPanel:GetWide(), tmHumanPanel:GetTall())
-		
-		-- /*surface.SetDrawColor(46, 48, 57, 255)
-		-- surface.DrawRect(1, 0, tmHumanPanel:GetWide(), tmHumanPanel:GetTall()/16)*/
-		
-		-- surface.SetDrawColor(150, 150, 150, 200)
-		-- surface.DrawOutlinedRect(0, 0, tmHumanPanel:GetWide(), tmHumanPanel:GetTall())
-	-- end
-	
-	-- local tmHumanIcon = vgui.Create( "DModelPanel", tmHumanPanel )
-	-- tmHumanIcon:SetModel( "models/Combine_Super_Soldier.mdl" )
-	-- tmHumanIcon:Dock(TOP)
-	-- tmHumanIcon:DockMargin(10,10,10,10)
-	-- tmHumanIcon:SetSize(tmHumanPanel:GetWide()-10,tmHumanPanel:GetTall()-10)
-	-- tmHumanIcon:SetCamPos( Vector( 50, 50, 30 ) )
-	-- tmHumanIcon:SetLookAt( Vector( 0, 0, 0 ) )
-	
-	-- local tmHumanTeamJoin = vgui.Create("DButton", tmHumanPanel )
-	-- tmHumanTeamJoin:Dock(BOTTOM)
-	-- tmHumanTeamJoin:DockMargin(10,10,10,10)
-	-- tmHumanTeamJoin:SetText("JOIN HUMANS")
-	-- tmHumanTeamJoin:SetColor(Color(255,255,255,255))
-	-- tmHumanTeamJoin:SetFont("ScoreboardSub")
-	-- tmHumanTeamJoin:SetSize(tmBarrelPanel:GetWide()-10,100)
-	-- tmHumanTeamJoin.Paint = function()
-		-- surface.SetDrawColor(0,0,180,255)
-		-- surface.DrawRect(0, 0, tmHumanTeamJoin:GetWide(), tmHumanTeamJoin:GetTall())
-		
-		-- /*surface.SetDrawColor(46, 48, 57, 255)
-		-- surface.DrawRect(1, 0, tmHumanTeamJoin:GetWide(), tmHumanTeamJoin:GetTall()/16)*/
-		
-		-- surface.SetDrawColor(150, 150, 150, 200)
-		-- surface.DrawOutlinedRect(0, 0, tmHumanTeamJoin:GetWide(), tmHumanTeamJoin:GetTall())
-	-- end
-	-- tmHumanTeamJoin.DoClick = function()
-		-- if ( ply:Team( )== TEAM_BARRELS ) then
-			-- net.Start( "sendPlayerTeamSwitchHumans" )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-				-- net.WriteEntity( LocalPlayer() )
-			-- net.SendToServer()
-		-- else
-			-- chat.AddText("You're already on this team!")
-		-- end
-		-- tmSwitchMenu:SetVisible(false)
-	-- end
-	
-	-- closeECEMenu = vgui.Create('DButton', tmSwitchMenu)
-	-- closeECEMenu:SetFont('marlett')
-	-- closeECEMenu:SetText('r')
-	-- closeECEMenu:SetColor(Color(255, 255, 255))
-	-- closeECEMenu:SetSize(15, 15)
-	-- closeECEMenu:SetDrawBackground(false)
-	-- closeECEMenu:SetPos( tmSwitchMenu:GetWide()+500, 5)
-	-- closeECEMenu.DoClick = function()
-		-- tmSwitchMenu:SetVisible(false)
-	-- end
--- end
--- concommand.Add("OpenTeamSwitchMenu", teamSwitchMenu)
 
 /*---------------------------------------------------------
    Name: gamemode:HUDShouldDraw( name )
