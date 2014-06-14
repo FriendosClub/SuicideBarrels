@@ -113,9 +113,9 @@ function SWEP:Think()
 		if i == 2 then i = 4 end
 		self.Owner:SetAnimation( PLAYER_RELOAD )
 		self.Weapon:EmitSound("weapons/glock/glock_slideback.wav")
-		timer.Simple(0.1,function() if self.Owner:IsValid() then self.Weapon:EmitSound("weapons/glock/glock_clipout.wav") else end end)
-		timer.Simple(0.5,function() if self.Owner:IsValid() then self.Weapon:EmitSound("weapons/glock/glock_clipin.wav") else end end)
-		timer.Simple(0.7,function() if self.Owner:IsValid() then self.Weapon:EmitSound("weapons/glock/glock_sliderelease.wav") else end end)
+		timer.Simple(0.1,function() self.Weapon:EmitSound("weapons/glock/glock_clipout.wav") end)
+		timer.Simple(0.5,function() self.Weapon:EmitSound("weapons/glock/glock_clipin.wav") end)
+		timer.Simple(0.7,function() self.Weapon:EmitSound("weapons/glock/glock_sliderelease.wav") end)
 	end
 	if self.NextUpper && self.NextUpper < CurTime() then
 		self.NextUpper = nil
