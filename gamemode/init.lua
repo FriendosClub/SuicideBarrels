@@ -44,6 +44,10 @@ function GM:Initialize()
 	math.randomseed(os.time())
 end
 
+function GM:Think()
+
+end
+
 function GM:InitCvars()
 	GAMEMODE:SyncGlobals()
 

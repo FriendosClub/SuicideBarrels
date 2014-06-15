@@ -143,7 +143,7 @@ end
 
 function WinTest()
 	if table.Count(player.GetAll()) >= GetGlobalInt("sb_minplayers", 2) then
-		if ((team.NumPlayers (TEAM_HUMANS)) or (team.NumPlayers (TEAM_BARRELS)) ) < 1 and round.Breaking == false and round.Active == true then
+		if ( (team.NumPlayers(TEAM_HUMANS) < 1) or (team.NumPlayers(TEAM_BARRELS) < 1) ) and round.Breaking == false and round.Active == true then
 			round.End()
 			round.EnblEnd = true
 		else
@@ -151,7 +151,7 @@ function WinTest()
 		end
 	end
 end
-hook.Add("Think", "WinTesting", WinTest)
+hook.Add( "Think", "WinTesting", WinTest )
 
 function round.IsActive()
 	if round.Breaking == false and round.Active == true then
